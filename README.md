@@ -6,16 +6,41 @@ It covers connecting an assistant, the finance tools (read / organize / sync), t
 
 ## Install
 
-The skill pairs with the Wise Penny MCP connection — set that up first at
+This skill pairs with the Wise Penny MCP connection — set that up first at
 <https://www.wisepenny.app/help/connect-ai>.
 
-Via [skills.sh](https://skills.sh):
+The skill is [`SKILL.md`](SKILL.md) at the repo root; its name (`wise-penny`)
+comes from the file's frontmatter, not this repo's name. It's also served at
+`https://www.wisepenny.app/.well-known/skills/SKILL.md`.
+
+Install steps differ by client, because each looks for skills in a different
+place.
+
+### Claude Code
+
+Claude Code loads skills only from `~/.claude/skills/<name>/` (personal) or a
+project's `.claude/skills/<name>/`. Clone the repo into one of those, then
+restart Claude Code:
+
+```bash
+git clone https://github.com/ottowatt/wisepenny-skill ~/.claude/skills/wise-penny
+```
+
+Run `git pull` in that folder later to update.
+
+### Claude apps (claude.ai / Claude Desktop)
+
+Zip the skill folder and upload it under **Settings → Features → Skills**
+(requires a plan with code execution enabled).
+
+### skills.sh / other agents
 
 ```bash
 npx skills add ottowatt/wisepenny-skill --skill wise-penny
 ```
 
-The skill is [`SKILL.md`](SKILL.md) at the repo root — its name (`wise-penny`) comes from the file's frontmatter, not this repo's name. The same skill is also served at `https://www.wisepenny.app/.well-known/skills/SKILL.md`.
+Heads up: this installs into `.agents/skills/`, which **Claude Code does not
+read** — for Claude Code, use the `git clone` step above instead.
 
 ## License
 
